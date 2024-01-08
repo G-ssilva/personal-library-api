@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.gssilva</groupId>
 	<artifactId>personal-library-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Personal Library API</name>
 	<description>API REST do Personal Library</description>
 	<properties>
