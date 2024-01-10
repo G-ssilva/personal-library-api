@@ -17,7 +17,7 @@ public class PerfilService {
         try {
             perfilRepository.save(perfil);
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao salvar usuário");
+            throw new RuntimeException("Erro ao salvar perfil");
         }
     }
 
