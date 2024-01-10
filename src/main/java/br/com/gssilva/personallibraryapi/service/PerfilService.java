@@ -24,4 +24,8 @@ public class PerfilService {
     public Optional<Perfil> listarPorId(long id) {
         return perfilRepository.findById(id);
     }
+
+    public Optional<Perfil> retonarPerfilSeExiste(long perfilId) {
+        return perfilRepository.findById(perfilId);
+    }
 }
