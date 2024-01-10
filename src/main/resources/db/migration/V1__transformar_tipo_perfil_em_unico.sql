@@ -1,0 +1,2 @@
+ALTER TABLE perfil
+ADD CONSTRAINT uk_tipo UNIQUE (tipo);
