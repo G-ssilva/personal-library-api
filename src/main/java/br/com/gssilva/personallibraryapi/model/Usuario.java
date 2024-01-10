@@ -16,6 +16,7 @@ public class Usuario {
     private long id;
 
     @Getter @Setter
+    @Column(unique = true)
     private String login;
 
     @Getter @Setter
