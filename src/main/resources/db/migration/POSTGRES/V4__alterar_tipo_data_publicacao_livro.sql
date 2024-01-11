@@ -1,2 +1,2 @@
-ALTER TABLE livro
+ALTER TABLE IF EXISTS livro
 ALTER COLUMN data_publicacao SET DATA TYPE date;

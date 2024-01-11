@@ -1,2 +1,2 @@
-ALTER TABLE perfil
+ALTER TABLE IF EXISTS perfil
 ADD CONSTRAINT uk_tipo UNIQUE (tipo);
