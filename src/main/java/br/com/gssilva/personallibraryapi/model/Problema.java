@@ -26,6 +26,7 @@ public class Problema {
 
     @Getter @Setter
     @Column(name = "data_hora")
+    @CreationTimestamp
     private LocalDateTime dataHora;
 
     @Getter @Setter
