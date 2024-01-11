@@ -1,7 +1,6 @@
 package br.com.gssilva.personallibraryapi.dto;
 
 import br.com.gssilva.personallibraryapi.model.Livro;
-import br.com.gssilva.personallibraryapi.model.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
