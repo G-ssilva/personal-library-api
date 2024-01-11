@@ -38,4 +38,8 @@ public class UsuarioService {
     public Optional<Usuario> listarPorId(long id) {
         return usuarioRepository.findById(id);
     }
+
+    public Optional<Usuario> retornarUsuarioSeExiste(Long usuarioId) {
+        return usuarioRepository.findById(usuarioId);
+    }
 }
