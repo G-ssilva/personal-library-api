@@ -22,7 +22,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<CriarUsuarioDto> criar(@RequestBody CriarUsuarioDto dados, UriComponentsBuilder uriBuilder){
         Usuario usuario = dados.criarUsuario();
-        usuarioService.vincularIdSeExiste(usuario, dados.getPerfilId());
+        usuarioService.vincularPerfilSeExiste(usuario, dados.getPerfilId());
 
         usuarioService.cadastrar(usuario);
 

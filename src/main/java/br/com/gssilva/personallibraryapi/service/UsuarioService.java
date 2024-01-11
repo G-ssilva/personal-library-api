@@ -17,7 +17,7 @@ public class UsuarioService {
     @Autowired
     private PerfilService perfilService;
 
-    public void vincularIdSeExiste(Usuario usuario, long perfilId) {
+    public void vincularPerfilSeExiste(Usuario usuario, long perfilId) {
         Optional<Perfil> perfilRetornado = perfilService.retonarPerfilSeExiste(perfilId);
 
         if(perfilRetornado.isEmpty()){
