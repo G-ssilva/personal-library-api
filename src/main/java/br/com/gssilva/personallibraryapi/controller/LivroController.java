@@ -1,7 +1,7 @@
 package br.com.gssilva.personallibraryapi.controller;
 
-import br.com.gssilva.personallibraryapi.dto.CriarLivroDto;
-import br.com.gssilva.personallibraryapi.dto.LivroDto;
+import br.com.gssilva.personallibraryapi.dto.livro.CriarLivroDto;
+import br.com.gssilva.personallibraryapi.dto.livro.LivroDto;
 import br.com.gssilva.personallibraryapi.model.Livro;
 import br.com.gssilva.personallibraryapi.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;

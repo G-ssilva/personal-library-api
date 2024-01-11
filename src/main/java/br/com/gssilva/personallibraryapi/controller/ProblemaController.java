@@ -1,7 +1,7 @@
 package br.com.gssilva.personallibraryapi.controller;
 
-import br.com.gssilva.personallibraryapi.dto.CriarProblemaDto;
-import br.com.gssilva.personallibraryapi.dto.ProblemaDto;
+import br.com.gssilva.personallibraryapi.dto.problema.CriarProblemaDto;
+import br.com.gssilva.personallibraryapi.dto.problema.ProblemaDto;
 import br.com.gssilva.personallibraryapi.model.Problema;
 import br.com.gssilva.personallibraryapi.service.ProblemaService;
 import org.springframework.beans.factory.annotation.Autowired;

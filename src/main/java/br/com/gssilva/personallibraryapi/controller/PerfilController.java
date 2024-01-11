@@ -1,7 +1,7 @@
 package br.com.gssilva.personallibraryapi.controller;
 
-import br.com.gssilva.personallibraryapi.dto.CriarPerfilDto;
-import br.com.gssilva.personallibraryapi.dto.PerfilDto;
+import br.com.gssilva.personallibraryapi.dto.perfil.CriarPerfilDto;
+import br.com.gssilva.personallibraryapi.dto.perfil.PerfilDto;
 import br.com.gssilva.personallibraryapi.model.Perfil;
 import br.com.gssilva.personallibraryapi.service.PerfilService;
 import jakarta.transaction.Transactional;

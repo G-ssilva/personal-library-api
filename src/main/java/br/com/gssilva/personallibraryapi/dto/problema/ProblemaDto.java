@@ -1,4 +1,4 @@
-package br.com.gssilva.personallibraryapi.dto;
+package br.com.gssilva.personallibraryapi.dto.problema;
 
 import br.com.gssilva.personallibraryapi.model.Problema;
 import lombok.AllArgsConstructor;

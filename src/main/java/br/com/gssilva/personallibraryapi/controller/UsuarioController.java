@@ -1,7 +1,7 @@
 package br.com.gssilva.personallibraryapi.controller;
 
-import br.com.gssilva.personallibraryapi.dto.CriarUsuarioDto;
-import br.com.gssilva.personallibraryapi.dto.UsuarioDto;
+import br.com.gssilva.personallibraryapi.dto.usuario.CriarUsuarioDto;
+import br.com.gssilva.personallibraryapi.dto.usuario.UsuarioDto;
 import br.com.gssilva.personallibraryapi.model.Usuario;
 import br.com.gssilva.personallibraryapi.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;

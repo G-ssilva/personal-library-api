@@ -1,4 +1,4 @@
-package br.com.gssilva.personallibraryapi.dto;
+package br.com.gssilva.personallibraryapi.dto.perfil;
 
 import br.com.gssilva.personallibraryapi.model.Perfil;
 import io.micrometer.common.util.StringUtils;
