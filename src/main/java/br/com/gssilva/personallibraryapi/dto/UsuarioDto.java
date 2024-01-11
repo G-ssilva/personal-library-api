@@ -18,6 +18,6 @@ public class UsuarioDto {
     public UsuarioDto(Usuario usuario) {
         this.login = usuario.getLogin();
         this.senha = usuario.getSenha();
-        this.perfilId = usuario.getId();
+        this.perfilId = usuario.getPerfilId().getId();
     }
 }
