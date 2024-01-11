@@ -14,11 +14,15 @@ import lombok.Setter;
 public class CriarUsuarioDto {
     private String login;
     private String senha;
-    private long perfilId;
+    private Long perfilId;
 
     public Usuario criarUsuario() {
         if(StringUtils.isBlank(login) || StringUtils.isBlank(senha)){
             throw new RuntimeException("Usuário e/ou senha não preenchido");
+        }
+
+        if(perfilId == null){
+            throw new RuntimeException("Id do usuário não informado");
         }
 
         Usuario usuario = new Usuario();
