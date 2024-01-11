@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import io.micrometer.common.util.StringUtils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -19,13 +20,17 @@ public class CriarLivroDto {
     private Long numeroPaginas;
     private String idioma;
     private String editora;
-    private LocalDateTime dataPublicacao;
+    private LocalDate dataPublicacao;
     private Long usuarioId;
 
     public Livro criarLivro() {
         if(StringUtils.isBlank(titulo) || StringUtils.isBlank(autor)
                 || StringUtils.isBlank(idioma) || StringUtils.isBlank(editora)){
             throw new RuntimeException("Título, autor, idioma e/ou editora do livro não informado");
+        }
+
+        if(dataPublicacao == null){
+            throw new RuntimeException("Data de publicação não informada");
         }
 
         if(numeroPaginas == null || usuarioId == null){

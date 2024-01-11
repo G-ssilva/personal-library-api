@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -19,7 +19,7 @@ public class LivroDto {
     private long numeroPaginas;
     private String idioma;
     private String editora;
-    private LocalDateTime dataPublicacao;
+    private LocalDate dataPublicacao;
     private long usuarioId;
 
     public LivroDto(Livro livro) {
