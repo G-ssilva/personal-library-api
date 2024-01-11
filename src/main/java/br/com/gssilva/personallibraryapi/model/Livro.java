@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Getter @Setter
     private String titulo;

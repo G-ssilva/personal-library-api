@@ -13,7 +13,7 @@ public class Perfil {
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Getter @Setter
     @Column(unique = true)

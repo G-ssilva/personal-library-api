@@ -16,7 +16,7 @@ public class Problema {
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Getter @Setter
     private String titulo;
