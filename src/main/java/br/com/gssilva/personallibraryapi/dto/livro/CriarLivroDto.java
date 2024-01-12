@@ -1,14 +1,13 @@
 package br.com.gssilva.personallibraryapi.dto.livro;
 
 import br.com.gssilva.personallibraryapi.model.Livro;
+import io.micrometer.common.util.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import io.micrometer.common.util.StringUtils;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
