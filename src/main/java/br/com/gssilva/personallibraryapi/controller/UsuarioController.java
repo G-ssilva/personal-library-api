@@ -31,14 +31,8 @@ public class UsuarioController {
     }
 
     @GetMapping("{id}")
-    public Optional<UsuarioDto> listarPorId(@PathVariable long id){
-        Optional<Usuario> usuario = usuarioService.listarPorId(id);
-
-        if(usuario.isEmpty()){
-            throw new RuntimeException("Id do usuário não existe na base de dados");
-        }
-
-        return usuario.map(UsuarioDto::new);
+    public UsuarioDto listarPorId(@PathVariable long id){
+        return new UsuarioDto(usuarioService.listarPorId(id));
     }
 
 }

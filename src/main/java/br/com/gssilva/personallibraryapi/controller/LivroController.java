@@ -31,13 +31,7 @@ public class LivroController {
     }
 
     @GetMapping("{id}")
-    public Optional<LivroDto> listarPorId(@PathVariable long id){
-        Optional<Livro> livro = livroService.listarPorId(id);
-
-        if(livro.isEmpty()){
-            throw new RuntimeException("Id do livro não existe na base de dados");
-        }
-
-        return livro.map(LivroDto::new);
+    public LivroDto listarPorId(@PathVariable long id){
+        return new LivroDto(livroService.listarPorId(id));
     }
 }

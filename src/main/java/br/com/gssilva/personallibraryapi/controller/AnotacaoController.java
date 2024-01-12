@@ -31,13 +31,7 @@ public class AnotacaoController {
     }
 
     @GetMapping("{id}")
-    public Optional<AnotacaoDto> listarPorId(@PathVariable long id){
-        Optional<Anotacao> anotacao = anotacaoService.listarPorId(id);
-
-        if(anotacao.isEmpty()){
-            throw new RuntimeException("Id da anotação não existe na base de dados");
-        }
-
-        return anotacao.map(AnotacaoDto::new);
+    public AnotacaoDto listarPorId(@PathVariable long id){
+        return new AnotacaoDto(anotacaoService.listarPorId(id));
     }
 }

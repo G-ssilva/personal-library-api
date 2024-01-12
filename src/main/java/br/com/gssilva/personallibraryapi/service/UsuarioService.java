@@ -18,13 +18,9 @@ public class UsuarioService {
     private PerfilService perfilService;
 
     public void vincularPerfilSeExiste(Usuario usuario, long perfilId) {
-        Optional<Perfil> perfilRetornado = perfilService.listarPorId(perfilId);
+        Perfil perfilRetornado = perfilService.listarPorId(perfilId);
 
-        if(perfilRetornado.isEmpty()){
-            throw new RuntimeException("Perfil não encontrado na base de dados");
-        }
-
-        usuario.setPerfilId(perfilRetornado.get());
+        usuario.setPerfilId(perfilRetornado);
     }
 
     public void cadastrar(Usuario usuario) {
@@ -35,8 +31,14 @@ public class UsuarioService {
         }
     }
 
-    public Optional<Usuario> listarPorId(long id) {
-        return usuarioRepository.findById(id);
+    public Usuario listarPorId(long id) {
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+
+        if(usuario.isEmpty()){
+            throw new RuntimeException("Id do usuário não existe na base de dados");
+        }
+
+        return usuario.get();
     }
 
 }

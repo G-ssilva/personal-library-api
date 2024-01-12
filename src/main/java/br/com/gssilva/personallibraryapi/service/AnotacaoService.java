@@ -18,13 +18,9 @@ public class AnotacaoService {
     private LivroService livroService;
 
     public void vincularLivroSeExiste(Anotacao anotacao, long livroId) {
-        Optional<Livro> livroRetornado = livroService.listarPorId(livroId);
+        Livro livroRetornado = livroService.listarPorId(livroId);
 
-        if(livroRetornado.isEmpty()){
-            throw new RuntimeException("Livro não encontrado na base de dados");
-        }
-
-        anotacao.setLivroId(livroRetornado.get());
+        anotacao.setLivroId(livroRetornado);
     }
 
     public void cadastrar(Anotacao anotacao) {
@@ -35,7 +31,13 @@ public class AnotacaoService {
         }
     }
 
-    public Optional<Anotacao> listarPorId(long id) {
-        return anotacaoRepository.findById(id);
+    public Anotacao listarPorId(long id) {
+        Optional<Anotacao> anotacao = anotacaoRepository.findById(id);
+
+        if(anotacao.isEmpty()){
+            throw new RuntimeException("Id da anotação não existe na base de dados");
+        }
+
+        return anotacao.get();
     }
 }

@@ -18,13 +18,9 @@ public class ProblemaService {
     private UsuarioService usuarioService;
 
     public void vincularUsuarioSeExiste(Problema problema, Long usuarioId) {
-        Optional<Usuario> usuarioRetornado = usuarioService.listarPorId(usuarioId);
+        Usuario usuarioRetornado = usuarioService.listarPorId(usuarioId);
 
-        if(usuarioRetornado.isEmpty()){
-            throw new RuntimeException("Usuário não encontrado na base de dados");
-        }
-
-        problema.setUsuarioId(usuarioRetornado.get());
+        problema.setUsuarioId(usuarioRetornado);
     }
 
     public void cadastrar(Problema problema) {
@@ -35,7 +31,13 @@ public class ProblemaService {
         }
     }
 
-    public Optional<Problema> listarPorId(long id) {
-        return problemaRepository.findById(id);
+    public Problema listarPorId(long id) {
+        Optional<Problema> problema = problemaRepository.findById(id);
+
+        if(problema.isEmpty()){
+            throw new RuntimeException("Id do problema não existe na base de dados");
+        }
+
+        return problema.get();
     }
 }

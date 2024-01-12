@@ -31,14 +31,8 @@ public class PerfilController {
     }
 
     @GetMapping("{id}")
-    public Optional<PerfilDto> listarPorId(@PathVariable long id){
-        Optional<Perfil> perfil = perfilService.listarPorId(id);
-
-        if(perfil.isEmpty()){
-            throw new RuntimeException("Id do perfil não existe na base de dados");
-        }
-
-        return perfil.map(PerfilDto::new);
+    public PerfilDto listarPorId(@PathVariable long id){
+        return new PerfilDto(perfilService.listarPorId(id));
     }
 
 

@@ -18,13 +18,9 @@ public class LivroService {
     private LivroRepository livroRepository;
 
     public void vincularUsuarioSeExiste(Livro livro, Long usuarioId) {
-        Optional<Usuario> usuarioRetornado = usuarioService.listarPorId(usuarioId);
+        Usuario usuarioRetornado = usuarioService.listarPorId(usuarioId);
 
-        if(usuarioRetornado.isEmpty()){
-            throw new RuntimeException("Usuário não encontrado na base de dados");
-        }
-
-        livro.setUsuarioId(usuarioRetornado.get());
+        livro.setUsuarioId(usuarioRetornado);
     }
 
     public void cadastrar(Livro livro) {
@@ -35,7 +31,13 @@ public class LivroService {
         }
     }
 
-    public Optional<Livro> listarPorId(long id) {
-        return livroRepository.findById(id);
+    public Livro listarPorId(long id) {
+        Optional<Livro> livro = livroRepository.findById(id);
+
+        if(livro.isEmpty()){
+            throw new RuntimeException("Id do livro não existe na base de dados");
+        }
+
+        return livro.get();
     }
 }

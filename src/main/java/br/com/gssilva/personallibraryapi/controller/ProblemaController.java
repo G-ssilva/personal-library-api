@@ -31,13 +31,7 @@ public class ProblemaController {
     }
 
     @GetMapping("{id}")
-    public Optional<ProblemaDto> listarPorId(@PathVariable long id){
-        Optional<Problema> problema = problemaService.listarPorId(id);
-
-        if(problema.isEmpty()){
-            throw new RuntimeException("Id do problema não existe na base de dados");
-        }
-
-        return problema.map(ProblemaDto::new);
+    public ProblemaDto listarPorId(@PathVariable long id){
+        return new ProblemaDto(problemaService.listarPorId(id));
     }
 }
