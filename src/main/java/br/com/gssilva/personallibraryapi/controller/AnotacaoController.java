@@ -1,10 +1,8 @@
 package br.com.gssilva.personallibraryapi.controller;
 
-import br.com.gssilva.personallibraryapi.dto.AnotacaoDto;
-import br.com.gssilva.personallibraryapi.dto.CriarAnotacaoDto;
-import br.com.gssilva.personallibraryapi.dto.problema.ProblemaDto;
+import br.com.gssilva.personallibraryapi.dto.anotacao.AnotacaoDto;
+import br.com.gssilva.personallibraryapi.dto.anotacao.CriarAnotacaoDto;
 import br.com.gssilva.personallibraryapi.model.Anotacao;
-import br.com.gssilva.personallibraryapi.model.Problema;
 import br.com.gssilva.personallibraryapi.service.AnotacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

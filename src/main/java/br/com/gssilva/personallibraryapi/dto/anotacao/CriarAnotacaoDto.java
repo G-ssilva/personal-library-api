@@ -1,4 +1,4 @@
-package br.com.gssilva.personallibraryapi.dto;
+package br.com.gssilva.personallibraryapi.dto.anotacao;
 
 import br.com.gssilva.personallibraryapi.model.Anotacao;
 import br.com.gssilva.personallibraryapi.model.Livro;

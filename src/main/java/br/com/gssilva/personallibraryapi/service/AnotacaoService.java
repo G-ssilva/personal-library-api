@@ -1,9 +1,7 @@
 package br.com.gssilva.personallibraryapi.service;
 
-import br.com.gssilva.personallibraryapi.dto.AnotacaoDto;
 import br.com.gssilva.personallibraryapi.model.Anotacao;
 import br.com.gssilva.personallibraryapi.model.Livro;
-import br.com.gssilva.personallibraryapi.model.Usuario;
 import br.com.gssilva.personallibraryapi.repository.AnotacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
