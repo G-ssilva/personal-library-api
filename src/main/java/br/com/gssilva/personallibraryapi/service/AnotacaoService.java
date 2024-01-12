@@ -40,4 +40,14 @@ public class AnotacaoService {
 
         return anotacao.get();
     }
+
+    public void deletarPorId(long id) {
+        listarPorId(id);
+
+        try {
+            anotacaoRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao deletar anotação");
+        }
+    }
 }

@@ -31,4 +31,13 @@ public class PerfilService {
         return perfil.get();
     }
 
+    public void deletarPorId(long id) {
+        listarPorId(id);
+
+        try {
+            perfilRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao deletar perfil");
+        }
+    }
 }

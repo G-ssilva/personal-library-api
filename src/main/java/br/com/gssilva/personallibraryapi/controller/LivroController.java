@@ -5,6 +5,7 @@ import br.com.gssilva.personallibraryapi.dto.livro.LivroDto;
 import br.com.gssilva.personallibraryapi.model.Livro;
 import br.com.gssilva.personallibraryapi.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -33,5 +34,11 @@ public class LivroController {
     @GetMapping("{id}")
     public LivroDto listarPorId(@PathVariable long id){
         return new LivroDto(livroService.listarPorId(id));
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable long id){
+        livroService.deletarPorId(id);
     }
 }

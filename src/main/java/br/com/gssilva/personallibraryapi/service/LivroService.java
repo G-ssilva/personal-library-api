@@ -40,4 +40,14 @@ public class LivroService {
 
         return livro.get();
     }
+
+    public void deletarPorId(long id) {
+        listarPorId(id);
+
+        try {
+            livroRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao deletar livro");
+        }
+    }
 }

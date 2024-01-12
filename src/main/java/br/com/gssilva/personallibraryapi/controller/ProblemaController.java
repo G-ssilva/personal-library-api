@@ -5,6 +5,7 @@ import br.com.gssilva.personallibraryapi.dto.problema.ProblemaDto;
 import br.com.gssilva.personallibraryapi.model.Problema;
 import br.com.gssilva.personallibraryapi.service.ProblemaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -33,5 +34,11 @@ public class ProblemaController {
     @GetMapping("{id}")
     public ProblemaDto listarPorId(@PathVariable long id){
         return new ProblemaDto(problemaService.listarPorId(id));
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable long id){
+        problemaService.deletarPorId(id);
     }
 }

@@ -40,4 +40,14 @@ public class ProblemaService {
 
         return problema.get();
     }
+
+    public void deletarPorId(long id) {
+        listarPorId(id);
+
+        try {
+            problemaRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao deletar problema");
+        }
+    }
 }

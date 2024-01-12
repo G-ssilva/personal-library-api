@@ -5,6 +5,7 @@ import br.com.gssilva.personallibraryapi.dto.usuario.UsuarioDto;
 import br.com.gssilva.personallibraryapi.model.Usuario;
 import br.com.gssilva.personallibraryapi.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -33,6 +34,12 @@ public class UsuarioController {
     @GetMapping("{id}")
     public UsuarioDto listarPorId(@PathVariable long id){
         return new UsuarioDto(usuarioService.listarPorId(id));
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable long id){
+        usuarioService.deletarPorId(id);
     }
 
 }

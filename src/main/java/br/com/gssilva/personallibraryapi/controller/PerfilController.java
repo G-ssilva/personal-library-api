@@ -4,14 +4,13 @@ import br.com.gssilva.personallibraryapi.dto.perfil.CriarPerfilDto;
 import br.com.gssilva.personallibraryapi.dto.perfil.PerfilDto;
 import br.com.gssilva.personallibraryapi.model.Perfil;
 import br.com.gssilva.personallibraryapi.service.PerfilService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/perfil")
@@ -32,6 +31,12 @@ public class PerfilController {
     @GetMapping("{id}")
     public PerfilDto listarPorId(@PathVariable long id){
         return new PerfilDto(perfilService.listarPorId(id));
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable long id){
+        perfilService.deletarPorId(id);
     }
 
 

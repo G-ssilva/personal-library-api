@@ -41,4 +41,13 @@ public class UsuarioService {
         return usuario.get();
     }
 
+    public void deletarPorId(long id) {
+        listarPorId(id);
+
+        try {
+            usuarioRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao deletar usuário");
+        }
+    }
 }
