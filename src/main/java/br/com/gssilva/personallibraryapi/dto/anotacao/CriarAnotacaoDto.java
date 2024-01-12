@@ -21,11 +21,11 @@ public class CriarAnotacaoDto {
 
     public Anotacao criarAnotacao() {
         if(StringUtils.isBlank(titulo) || StringUtils.isBlank(descricao)){
-            throw new RuntimeException("Usuário e/ou senha não preenchido");
+            throw new RuntimeException("Título e/ou descrição não preenchido");
         }
 
         if(livroId == null){
-            throw new RuntimeException("ID do livro preenchido");
+            throw new RuntimeException("ID do livro não preenchido");
         }
 
         Anotacao anotacao = new Anotacao();

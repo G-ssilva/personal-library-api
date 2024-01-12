@@ -31,7 +31,7 @@ public class LivroService {
         try {
             livroRepository.save(livro);
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao salvar problema");
+            throw new RuntimeException("Erro ao salvar livro");
         }
     }
 

@@ -22,7 +22,7 @@ public class CriarProblemaDto {
 
     public Problema criarProblema() {
         if(StringUtils.isBlank(titulo) || StringUtils.isBlank(descricao)){
-            throw new RuntimeException("Titulo e/ou descricao não preenchido");
+            throw new RuntimeException("Titulo e/ou descricao do problema não preenchido");
         }
 
         if(usuarioId == null){

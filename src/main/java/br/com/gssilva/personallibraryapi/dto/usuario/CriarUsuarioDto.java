@@ -18,11 +18,11 @@ public class CriarUsuarioDto {
 
     public Usuario criarUsuario() {
         if(StringUtils.isBlank(login) || StringUtils.isBlank(senha)){
-            throw new RuntimeException("Usuário e/ou senha não preenchido");
+            throw new RuntimeException("Login e/ou senha não preenchido");
         }
 
         if(perfilId == null){
-            throw new RuntimeException("Id do usuário não informado");
+            throw new RuntimeException("Id do perfil não informado");
         }
 
         Usuario usuario = new Usuario();

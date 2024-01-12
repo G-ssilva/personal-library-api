@@ -21,7 +21,7 @@ public class AnotacaoService {
         Optional<Livro> livroRetornado = livroService.retornarLivroSeExiste(livroId);
 
         if(livroRetornado.isEmpty()){
-            throw new RuntimeException("Usuário não encontrado na base de dados");
+            throw new RuntimeException("Livro não encontrado na base de dados");
         }
 
         anotacao.setLivroId(livroRetornado.get());
