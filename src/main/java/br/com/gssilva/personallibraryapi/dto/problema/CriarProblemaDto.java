@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class CriarProblemaDto {
     private String titulo;
     private String descricao;
+    private LocalDateTime dataHora;
     private String solucao;
     private Long usuarioId;
 
@@ -32,10 +33,18 @@ public class CriarProblemaDto {
 
         problema.setTitulo(titulo);
         problema.setDescricao(descricao);
+        problema.setDataHora(dataHora);
+
+        if(dataHora == null){
+            problema.setDataHora(LocalDateTime.now());
+        }
+
         problema.setSolucao("");
+
         if(StringUtils.isNotBlank(solucao)){
             problema.setSolucao(solucao);
         }
+
 
         return problema;
     }

@@ -1,7 +1,6 @@
 package br.com.gssilva.personallibraryapi.dto.anotacao;
 
 import br.com.gssilva.personallibraryapi.model.Anotacao;
-import br.com.gssilva.personallibraryapi.model.Livro;
 import io.micrometer.common.util.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,9 +31,10 @@ public class CriarAnotacaoDto {
         Anotacao anotacao = new Anotacao();
         anotacao.setTitulo(titulo);
         anotacao.setDescricao(descricao);
+        anotacao.setDataHora(dataHora);
 
-        if(dataHora != null){
-            anotacao.setDataHora(dataHora);
+        if(dataHora == null){
+            anotacao.setDataHora(LocalDateTime.now());
         }
 
         return anotacao;
