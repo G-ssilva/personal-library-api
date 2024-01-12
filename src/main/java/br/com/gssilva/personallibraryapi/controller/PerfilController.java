@@ -21,7 +21,6 @@ public class PerfilController {
     private PerfilService perfilService;
 
     @PostMapping
-    @Transactional
     public ResponseEntity<CriarPerfilDto> cadastrar(@RequestBody CriarPerfilDto dados, UriComponentsBuilder uriBuilder){
         Perfil perfil = dados.criarPerfil();
         perfilService.cadastrar(perfil);
