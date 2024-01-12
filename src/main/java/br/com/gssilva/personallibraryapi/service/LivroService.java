@@ -38,4 +38,8 @@ public class LivroService {
     public Optional<Livro> listarPorId(long id) {
         return livroRepository.findById(id);
     }
+
+    public Optional<Livro> retornarLivroSeExiste(long livroId) {
+        return livroRepository.findById(livroId);
+    }
 }
