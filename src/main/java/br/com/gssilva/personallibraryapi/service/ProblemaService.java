@@ -18,7 +18,7 @@ public class ProblemaService {
     private UsuarioService usuarioService;
 
     public void vincularUsuarioSeExiste(Problema problema, Long usuarioId) {
-        Optional<Usuario> usuarioRetornado = usuarioService.retornarUsuarioSeExiste(usuarioId);
+        Optional<Usuario> usuarioRetornado = usuarioService.listarPorId(usuarioId);
 
         if(usuarioRetornado.isEmpty()){
             throw new RuntimeException("Usuário não encontrado na base de dados");

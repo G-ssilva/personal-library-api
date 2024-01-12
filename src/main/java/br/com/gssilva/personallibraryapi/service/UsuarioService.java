@@ -18,7 +18,7 @@ public class UsuarioService {
     private PerfilService perfilService;
 
     public void vincularPerfilSeExiste(Usuario usuario, long perfilId) {
-        Optional<Perfil> perfilRetornado = perfilService.retonarPerfilSeExiste(perfilId);
+        Optional<Perfil> perfilRetornado = perfilService.listarPorId(perfilId);
 
         if(perfilRetornado.isEmpty()){
             throw new RuntimeException("Perfil não encontrado na base de dados");
@@ -39,7 +39,4 @@ public class UsuarioService {
         return usuarioRepository.findById(id);
     }
 
-    public Optional<Usuario> retornarUsuarioSeExiste(Long usuarioId) {
-        return usuarioRepository.findById(usuarioId);
-    }
 }

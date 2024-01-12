@@ -18,7 +18,7 @@ public class LivroService {
     private LivroRepository livroRepository;
 
     public void vincularUsuarioSeExiste(Livro livro, Long usuarioId) {
-        Optional<Usuario> usuarioRetornado = usuarioService.retornarUsuarioSeExiste(usuarioId);
+        Optional<Usuario> usuarioRetornado = usuarioService.listarPorId(usuarioId);
 
         if(usuarioRetornado.isEmpty()){
             throw new RuntimeException("Usuário não encontrado na base de dados");
@@ -37,9 +37,5 @@ public class LivroService {
 
     public Optional<Livro> listarPorId(long id) {
         return livroRepository.findById(id);
-    }
-
-    public Optional<Livro> retornarLivroSeExiste(long livroId) {
-        return livroRepository.findById(livroId);
     }
 }

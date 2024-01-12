@@ -18,7 +18,7 @@ public class AnotacaoService {
     private LivroService livroService;
 
     public void vincularLivroSeExiste(Anotacao anotacao, long livroId) {
-        Optional<Livro> livroRetornado = livroService.retornarLivroSeExiste(livroId);
+        Optional<Livro> livroRetornado = livroService.listarPorId(livroId);
 
         if(livroRetornado.isEmpty()){
             throw new RuntimeException("Livro não encontrado na base de dados");
