@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CriarPerfilDto {
+public class PerfilFormDto {
     private String tipo;
     private String descricao;
 

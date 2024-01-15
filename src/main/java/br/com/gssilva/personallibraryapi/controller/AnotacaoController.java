@@ -1,7 +1,7 @@
 package br.com.gssilva.personallibraryapi.controller;
 
 import br.com.gssilva.personallibraryapi.dto.anotacao.AnotacaoDto;
-import br.com.gssilva.personallibraryapi.dto.anotacao.CriarAnotacaoDto;
+import br.com.gssilva.personallibraryapi.dto.anotacao.AnotacaoFormDto;
 import br.com.gssilva.personallibraryapi.model.Anotacao;
 import br.com.gssilva.personallibraryapi.service.AnotacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class AnotacaoController {
     private AnotacaoService anotacaoService;
 
     @PostMapping
-    public ResponseEntity<CriarAnotacaoDto> cadastrar(@RequestBody CriarAnotacaoDto dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<AnotacaoFormDto> cadastrar(@RequestBody AnotacaoFormDto dados, UriComponentsBuilder uriBuilder){
         Anotacao anotacao = dados.criarAnotacao();
         anotacaoService.vincularLivroSeExiste(anotacao, dados.getLivroId());
 
@@ -36,7 +36,7 @@ public class AnotacaoController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<AnotacaoDto> alterar(@RequestBody CriarAnotacaoDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<AnotacaoDto> alterar(@RequestBody AnotacaoFormDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
         Anotacao anotacao = anotacaoService.anotacaoReferencia(id);
         dados.alterarAnotacao(anotacao);
         anotacaoService.alterarLivroSeInformado(anotacao, dados.getLivroId());

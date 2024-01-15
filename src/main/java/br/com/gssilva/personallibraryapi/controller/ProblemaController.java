@@ -1,6 +1,6 @@
 package br.com.gssilva.personallibraryapi.controller;
 
-import br.com.gssilva.personallibraryapi.dto.problema.CriarProblemaDto;
+import br.com.gssilva.personallibraryapi.dto.problema.ProblemaFormDto;
 import br.com.gssilva.personallibraryapi.dto.problema.ProblemaDto;
 import br.com.gssilva.personallibraryapi.model.Problema;
 import br.com.gssilva.personallibraryapi.service.ProblemaService;
@@ -20,7 +20,7 @@ public class ProblemaController {
     private ProblemaService problemaService;
 
     @PostMapping
-    public ResponseEntity<CriarProblemaDto> cadastrar(@RequestBody CriarProblemaDto dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<ProblemaFormDto> cadastrar(@RequestBody ProblemaFormDto dados, UriComponentsBuilder uriBuilder){
         Problema problema = dados.criarProblema();
         problemaService.vincularUsuarioSeExiste(problema, dados.getUsuarioId());
 
@@ -36,7 +36,7 @@ public class ProblemaController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ProblemaDto> alterar(@RequestBody CriarProblemaDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<ProblemaDto> alterar(@RequestBody ProblemaFormDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
         Problema problema = problemaService.problemaReferencia(id);
         dados.alterarProblema(problema);
         problemaService.alterarUsuarioSeInformado(problema, dados.getUsuarioId());

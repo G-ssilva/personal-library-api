@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CriarUsuarioDto {
+public class UsuarioFormDto {
     private String login;
     private String senha;
     private Long perfilId;

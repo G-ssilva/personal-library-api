@@ -1,6 +1,6 @@
 package br.com.gssilva.personallibraryapi.controller;
 
-import br.com.gssilva.personallibraryapi.dto.livro.CriarLivroDto;
+import br.com.gssilva.personallibraryapi.dto.livro.LivroFormDto;
 import br.com.gssilva.personallibraryapi.dto.livro.LivroDto;
 import br.com.gssilva.personallibraryapi.model.Livro;
 import br.com.gssilva.personallibraryapi.service.LivroService;
@@ -20,7 +20,7 @@ public class LivroController {
     private LivroService livroService;
 
     @PostMapping
-    public ResponseEntity<CriarLivroDto> cadastrar(@RequestBody CriarLivroDto dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<LivroFormDto> cadastrar(@RequestBody LivroFormDto dados, UriComponentsBuilder uriBuilder){
         Livro livro = dados.criarLivro();
         livroService.vincularUsuarioSeExiste(livro, dados.getUsuarioId());
 
@@ -36,7 +36,7 @@ public class LivroController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<LivroDto> alterar(@RequestBody CriarLivroDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<LivroDto> alterar(@RequestBody LivroFormDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
         Livro livro = livroService.livroReferencia(id);
         dados.alterarLivro(livro);
         livroService.alterarUsuarioSeInformado(livro, dados.getUsuarioId());

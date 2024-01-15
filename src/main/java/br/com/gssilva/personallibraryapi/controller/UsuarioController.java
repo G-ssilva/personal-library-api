@@ -1,6 +1,6 @@
 package br.com.gssilva.personallibraryapi.controller;
 
-import br.com.gssilva.personallibraryapi.dto.usuario.CriarUsuarioDto;
+import br.com.gssilva.personallibraryapi.dto.usuario.UsuarioFormDto;
 import br.com.gssilva.personallibraryapi.dto.usuario.UsuarioDto;
 import br.com.gssilva.personallibraryapi.model.Usuario;
 import br.com.gssilva.personallibraryapi.service.UsuarioService;
@@ -20,7 +20,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<CriarUsuarioDto> criar(@RequestBody CriarUsuarioDto dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<UsuarioFormDto> criar(@RequestBody UsuarioFormDto dados, UriComponentsBuilder uriBuilder){
         Usuario usuario = dados.criarUsuario();
         usuarioService.vincularPerfilSeExiste(usuario, dados.getPerfilId());
 
@@ -36,7 +36,7 @@ public class UsuarioController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<UsuarioDto> alterar(@RequestBody CriarUsuarioDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<UsuarioDto> alterar(@RequestBody UsuarioFormDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
         Usuario usuario = usuarioService.usuarioReferencia(id);
         dados.alterarUsuario(usuario);
         usuarioService.alterarPerfilSeInformado(usuario, dados.getPerfilId());

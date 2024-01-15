@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CriarLivroDto {
+public class LivroFormDto {
     private String titulo;
     private String autor;
     private Long numeroPaginas;

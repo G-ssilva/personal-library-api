@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CriarAnotacaoDto {
+public class AnotacaoFormDto {
     private String titulo;
     private String descricao;
     private LocalDateTime dataHora;

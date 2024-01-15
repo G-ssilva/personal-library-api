@@ -1,6 +1,6 @@
 package br.com.gssilva.personallibraryapi.controller;
 
-import br.com.gssilva.personallibraryapi.dto.perfil.CriarPerfilDto;
+import br.com.gssilva.personallibraryapi.dto.perfil.PerfilFormDto;
 import br.com.gssilva.personallibraryapi.dto.perfil.PerfilDto;
 import br.com.gssilva.personallibraryapi.model.Perfil;
 import br.com.gssilva.personallibraryapi.service.PerfilService;
@@ -20,7 +20,7 @@ public class PerfilController {
     private PerfilService perfilService;
 
     @PostMapping
-    public ResponseEntity<CriarPerfilDto> cadastrar(@RequestBody CriarPerfilDto dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<PerfilFormDto> cadastrar(@RequestBody PerfilFormDto dados, UriComponentsBuilder uriBuilder){
         Perfil perfil = dados.criarPerfil();
         perfilService.cadastrar(perfil);
 
@@ -34,7 +34,7 @@ public class PerfilController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<PerfilDto> alterar(@RequestBody CriarPerfilDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<PerfilDto> alterar(@RequestBody PerfilFormDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
         Perfil perfil = perfilService.perfilReferencia(id);
         dados.alterarPerfil(perfil);
         perfilService.cadastrar(perfil);
