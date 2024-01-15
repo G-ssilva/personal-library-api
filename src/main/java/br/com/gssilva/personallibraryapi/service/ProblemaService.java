@@ -41,6 +41,20 @@ public class ProblemaService {
         return problema.get();
     }
 
+    public Problema problemaReferencia(long id) {
+        try {
+            return problemaRepository.getReferenceById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar referência do id do problema informado");
+        }
+    }
+
+    public void alterarUsuarioSeInformado(Problema problema, Long usuarioId) {
+        if(usuarioId != null){
+            vincularUsuarioSeExiste(problema, usuarioId);
+        }
+    }
+
     public void deletarPorId(long id) {
         listarPorId(id);
 
@@ -50,4 +64,6 @@ public class ProblemaService {
             throw new RuntimeException("Erro ao deletar problema");
         }
     }
+
+
 }

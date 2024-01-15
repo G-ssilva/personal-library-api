@@ -27,4 +27,14 @@ public class CriarPerfilDto {
 
         return perfil;
     }
+
+    public void alterarPerfil(Perfil perfil) {
+        if(StringUtils.isNotBlank(tipo)){
+            perfil.setTipo(tipo);
+        }
+
+        if(StringUtils.isNotBlank(descricao)){
+            perfil.setDescricao(descricao);
+        }
+    }
 }

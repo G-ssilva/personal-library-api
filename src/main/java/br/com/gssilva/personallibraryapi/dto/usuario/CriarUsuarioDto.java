@@ -32,4 +32,14 @@ public class CriarUsuarioDto {
 
         return usuario;
     }
+
+    public void alterarUsuario(Usuario usuario) {
+        if(StringUtils.isNotBlank(login)){
+            throw new RuntimeException("Não é possível alterar o usuário");
+        }
+
+        if(StringUtils.isNotBlank(senha)){
+            usuario.setSenha(senha);
+        }
+    }
 }

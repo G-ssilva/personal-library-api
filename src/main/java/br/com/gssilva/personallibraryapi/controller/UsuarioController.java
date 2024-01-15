@@ -35,6 +35,19 @@ public class UsuarioController {
         return new UsuarioDto(usuarioService.listarPorId(id));
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<UsuarioDto> alterar(@RequestBody CriarUsuarioDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
+        Usuario usuario = usuarioService.usuarioReferencia(id);
+        dados.alterarUsuario(usuario);
+        usuarioService.alterarPerfilSeInformado(usuario, dados.getPerfilId());
+        usuarioService.cadastrar(usuario);
+
+        UsuarioDto usuarioDto = new UsuarioDto(usuario);
+
+        URI uri = uriBuilder.path("api/usuario/{id}").buildAndExpand(id).toUri();
+        return ResponseEntity.created(uri).body(usuarioDto);
+    }
+
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable long id){

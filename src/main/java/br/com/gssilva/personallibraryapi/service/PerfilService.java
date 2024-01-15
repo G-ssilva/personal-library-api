@@ -24,11 +24,19 @@ public class PerfilService {
     public Perfil listarPorId(long id) {
         Optional<Perfil> perfil = perfilRepository.findById(id);
 
-        if(perfil.isEmpty()){
+        if (perfil.isEmpty()) {
             throw new RuntimeException("Id do perfil não existe na base de dados");
         }
 
         return perfil.get();
+    }
+
+    public Perfil perfilReferencia(long id) {
+        try {
+            return perfilRepository.getReferenceById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar referência do id do perfil informado");
+        }
     }
 
     public void deletarPorId(long id) {

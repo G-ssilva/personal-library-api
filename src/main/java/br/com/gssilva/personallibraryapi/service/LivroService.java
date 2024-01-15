@@ -34,11 +34,25 @@ public class LivroService {
     public Livro listarPorId(long id) {
         Optional<Livro> livro = livroRepository.findById(id);
 
-        if(livro.isEmpty()){
+        if (livro.isEmpty()) {
             throw new RuntimeException("Id do livro não existe na base de dados");
         }
 
         return livro.get();
+    }
+
+    public Livro livroReferencia(long id) {
+        try {
+            return livroRepository.getReferenceById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar referência do id do livro informado");
+        }
+    }
+
+    public void alterarUsuarioSeInformado(Livro livro, Long usuarioId) {
+        if(usuarioId != null){
+            vincularUsuarioSeExiste(livro, usuarioId);
+        }
     }
 
     public void deletarPorId(long id) {
@@ -50,4 +64,5 @@ public class LivroService {
             throw new RuntimeException("Erro ao deletar livro");
         }
     }
+
 }

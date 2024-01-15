@@ -35,6 +35,19 @@ public class ProblemaController {
         return new ProblemaDto(problemaService.listarPorId(id));
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<ProblemaDto> alterar(@RequestBody CriarProblemaDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
+        Problema problema = problemaService.problemaReferencia(id);
+        dados.alterarProblema(problema);
+        problemaService.alterarUsuarioSeInformado(problema, dados.getUsuarioId());
+        problemaService.cadastrar(problema);
+
+        ProblemaDto problemaDto = new ProblemaDto(problema);
+
+        URI uri = uriBuilder.path("api/problema/{id}").buildAndExpand(id).toUri();
+        return ResponseEntity.created(uri).body(problemaDto);
+    }
+
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable long id){

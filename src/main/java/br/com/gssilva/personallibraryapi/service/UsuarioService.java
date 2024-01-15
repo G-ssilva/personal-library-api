@@ -41,6 +41,20 @@ public class UsuarioService {
         return usuario.get();
     }
 
+    public Usuario usuarioReferencia(long id) {
+        try {
+            return usuarioRepository.getReferenceById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar referência do id do usuário informado");
+        }
+    }
+
+    public void alterarPerfilSeInformado(Usuario usuario, Long perfilId) {
+        if(perfilId != null){
+            vincularPerfilSeExiste(usuario, perfilId);
+        }
+    }
+
     public void deletarPorId(long id) {
         listarPorId(id);
 

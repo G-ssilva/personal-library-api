@@ -48,4 +48,22 @@ public class CriarProblemaDto {
 
         return problema;
     }
+
+    public void alterarProblema(Problema problema) {
+        if(StringUtils.isNotBlank(titulo)){
+            problema.setTitulo(titulo);
+        }
+
+        if(StringUtils.isNotBlank(descricao)){
+            problema.setDescricao(descricao);
+        }
+
+        if(dataHora != null){
+            problema.setDataHora(dataHora);
+        }
+
+        if(StringUtils.isNotBlank(solucao)){
+            problema.setSolucao(solucao);
+        }
+    }
 }

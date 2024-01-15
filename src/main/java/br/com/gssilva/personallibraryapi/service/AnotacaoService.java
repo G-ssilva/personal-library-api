@@ -41,6 +41,20 @@ public class AnotacaoService {
         return anotacao.get();
     }
 
+    public Anotacao anotacaoReferencia(long id) {
+        try {
+            return anotacaoRepository.getReferenceById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar referência do id da anotação informado");
+        }
+    }
+
+    public void alterarLivroSeInformado(Anotacao anotacao, Long livroId) {
+        if(livroId != null){
+            vincularLivroSeExiste(anotacao, livroId);
+        }
+    }
+
     public void deletarPorId(long id) {
         listarPorId(id);
 
@@ -50,4 +64,6 @@ public class AnotacaoService {
             throw new RuntimeException("Erro ao deletar anotação");
         }
     }
+
+
 }

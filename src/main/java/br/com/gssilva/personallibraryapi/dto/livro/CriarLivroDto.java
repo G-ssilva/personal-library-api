@@ -46,4 +46,30 @@ public class CriarLivroDto {
 
         return livro;
     }
+
+    public void alterarLivro(Livro livro) {
+        if(StringUtils.isNotBlank(titulo)){
+            livro.setTitulo(titulo);
+        }
+
+        if(StringUtils.isNotBlank(autor)){
+            livro.setAutor(autor);
+        }
+
+        if(numeroPaginas != null){
+            livro.setNumeroPaginas(numeroPaginas);
+        }
+
+        if(StringUtils.isNotBlank(idioma)){
+            livro.setIdioma(idioma);
+        }
+
+        if(StringUtils.isNotBlank(editora)){
+            livro.setEditora(editora);
+        }
+
+        if(dataPublicacao != null){
+            livro.setDataPublicacao(dataPublicacao);
+        }
+    }
 }

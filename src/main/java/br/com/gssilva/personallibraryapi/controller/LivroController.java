@@ -35,6 +35,19 @@ public class LivroController {
         return new LivroDto(livroService.listarPorId(id));
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<LivroDto> alterar(@RequestBody CriarLivroDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
+        Livro livro = livroService.livroReferencia(id);
+        dados.alterarLivro(livro);
+        livroService.alterarUsuarioSeInformado(livro, dados.getUsuarioId());
+        livroService.cadastrar(livro);
+
+        LivroDto livroDto = new LivroDto(livro);
+
+        URI uri = uriBuilder.path("api/livro/{id}").buildAndExpand(id).toUri();
+        return ResponseEntity.created(uri).body(livroDto);
+    }
+
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable long id){

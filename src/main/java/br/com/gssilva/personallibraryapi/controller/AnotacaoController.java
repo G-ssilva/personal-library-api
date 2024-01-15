@@ -35,6 +35,19 @@ public class AnotacaoController {
         return new AnotacaoDto(anotacaoService.listarPorId(id));
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<AnotacaoDto> alterar(@RequestBody CriarAnotacaoDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
+        Anotacao anotacao = anotacaoService.anotacaoReferencia(id);
+        dados.alterarAnotacao(anotacao);
+        anotacaoService.alterarLivroSeInformado(anotacao, dados.getLivroId());
+        anotacaoService.cadastrar(anotacao);
+
+        AnotacaoDto anotacaoDto = new AnotacaoDto(anotacao);
+
+        URI uri = uriBuilder.path("api/anotacao/{id}").buildAndExpand(id).toUri();
+        return ResponseEntity.created(uri).body(anotacaoDto);
+    }
+
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable long id){

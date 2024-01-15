@@ -39,4 +39,18 @@ public class CriarAnotacaoDto {
 
         return anotacao;
     }
+
+    public void alterarAnotacao(Anotacao anotacao) {
+        if(StringUtils.isNotBlank(titulo)){
+            anotacao.setTitulo(titulo);
+        }
+
+        if(StringUtils.isNotBlank(descricao)){
+            anotacao.setDescricao(descricao);
+        }
+
+        if(dataHora != null){
+            anotacao.setDataHora(dataHora);
+        }
+    }
 }
