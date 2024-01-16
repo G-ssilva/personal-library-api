@@ -4,6 +4,7 @@ import br.com.gssilva.personallibraryapi.dto.livro.LivroFormDto;
 import br.com.gssilva.personallibraryapi.dto.livro.LivroDto;
 import br.com.gssilva.personallibraryapi.model.Livro;
 import br.com.gssilva.personallibraryapi.service.LivroService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class LivroController {
     private LivroService livroService;
 
     @PostMapping
-    public ResponseEntity<LivroFormDto> cadastrar(@RequestBody LivroFormDto dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<LivroFormDto> cadastrar(@RequestBody @Valid LivroFormDto dados, UriComponentsBuilder uriBuilder){
         Livro livro = dados.criarLivro();
         livroService.vincularUsuarioSeExiste(livro, dados.getUsuarioId());
 

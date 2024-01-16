@@ -4,6 +4,7 @@ import br.com.gssilva.personallibraryapi.dto.perfil.PerfilFormDto;
 import br.com.gssilva.personallibraryapi.dto.perfil.PerfilDto;
 import br.com.gssilva.personallibraryapi.model.Perfil;
 import br.com.gssilva.personallibraryapi.service.PerfilService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class PerfilController {
     private PerfilService perfilService;
 
     @PostMapping
-    public ResponseEntity<PerfilFormDto> cadastrar(@RequestBody PerfilFormDto dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<PerfilFormDto> cadastrar(@RequestBody @Valid PerfilFormDto dados, UriComponentsBuilder uriBuilder){
         Perfil perfil = dados.criarPerfil();
         perfilService.cadastrar(perfil);
 

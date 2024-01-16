@@ -4,6 +4,7 @@ import br.com.gssilva.personallibraryapi.dto.usuario.UsuarioFormDto;
 import br.com.gssilva.personallibraryapi.dto.usuario.UsuarioDto;
 import br.com.gssilva.personallibraryapi.model.Usuario;
 import br.com.gssilva.personallibraryapi.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<UsuarioFormDto> criar(@RequestBody UsuarioFormDto dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<UsuarioFormDto> criar(@RequestBody @Valid UsuarioFormDto dados, UriComponentsBuilder uriBuilder){
         Usuario usuario = dados.criarUsuario();
         usuarioService.vincularPerfilSeExiste(usuario, dados.getPerfilId());
 

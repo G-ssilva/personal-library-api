@@ -4,6 +4,7 @@ import br.com.gssilva.personallibraryapi.dto.anotacao.AnotacaoDto;
 import br.com.gssilva.personallibraryapi.dto.anotacao.AnotacaoFormDto;
 import br.com.gssilva.personallibraryapi.model.Anotacao;
 import br.com.gssilva.personallibraryapi.service.AnotacaoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class AnotacaoController {
     private AnotacaoService anotacaoService;
 
     @PostMapping
-    public ResponseEntity<AnotacaoFormDto> cadastrar(@RequestBody AnotacaoFormDto dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<AnotacaoFormDto> cadastrar(@RequestBody @Valid AnotacaoFormDto dados, UriComponentsBuilder uriBuilder){
         Anotacao anotacao = dados.criarAnotacao();
         anotacaoService.vincularLivroSeExiste(anotacao, dados.getLivroId());
 

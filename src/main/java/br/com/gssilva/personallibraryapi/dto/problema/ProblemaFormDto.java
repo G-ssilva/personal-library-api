@@ -2,6 +2,8 @@ package br.com.gssilva.personallibraryapi.dto.problema;
 
 import br.com.gssilva.personallibraryapi.model.Problema;
 import io.micrometer.common.util.StringUtils;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,21 +16,19 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProblemaFormDto {
+    @NotBlank(message = "Título deve ser preenchido")
     private String titulo;
+
+    @NotBlank(message = "Descrição deve ser preenchido")
     private String descricao;
+
     private LocalDateTime dataHora;
     private String solucao;
+
+    @NotNull(message = "Usuário deve ser informado")
     private Long usuarioId;
 
     public Problema criarProblema() {
-        if(StringUtils.isBlank(titulo) || StringUtils.isBlank(descricao)){
-            throw new RuntimeException("Titulo e/ou descricao do problema não preenchido");
-        }
-
-        if(usuarioId == null){
-            throw new RuntimeException("Id do usuário não informado");
-        }
-
         Problema problema = new Problema();
 
         problema.setTitulo(titulo);

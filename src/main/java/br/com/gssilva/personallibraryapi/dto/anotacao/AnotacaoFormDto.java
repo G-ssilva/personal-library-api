@@ -2,6 +2,8 @@ package br.com.gssilva.personallibraryapi.dto.anotacao;
 
 import br.com.gssilva.personallibraryapi.model.Anotacao;
 import io.micrometer.common.util.StringUtils;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,20 +16,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AnotacaoFormDto {
+    @NotBlank(message = "Título deve ser preenchido")
     private String titulo;
+
+    @NotBlank(message = "Descrição deve ser preenchido")
     private String descricao;
+
     private LocalDateTime dataHora;
+
+    @NotNull(message = "Livro deve ser informado")
     private Long livroId;
 
     public Anotacao criarAnotacao() {
-        if(StringUtils.isBlank(titulo) || StringUtils.isBlank(descricao)){
-            throw new RuntimeException("Título e/ou descrição não preenchido");
-        }
-
-        if(livroId == null){
-            throw new RuntimeException("ID do livro não preenchido");
-        }
-
         Anotacao anotacao = new Anotacao();
         anotacao.setTitulo(titulo);
         anotacao.setDescricao(descricao);

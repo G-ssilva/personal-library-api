@@ -4,6 +4,7 @@ import br.com.gssilva.personallibraryapi.dto.problema.ProblemaFormDto;
 import br.com.gssilva.personallibraryapi.dto.problema.ProblemaDto;
 import br.com.gssilva.personallibraryapi.model.Problema;
 import br.com.gssilva.personallibraryapi.service.ProblemaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class ProblemaController {
     private ProblemaService problemaService;
 
     @PostMapping
-    public ResponseEntity<ProblemaFormDto> cadastrar(@RequestBody ProblemaFormDto dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<ProblemaFormDto> cadastrar(@RequestBody @Valid ProblemaFormDto dados, UriComponentsBuilder uriBuilder){
         Problema problema = dados.criarProblema();
         problemaService.vincularUsuarioSeExiste(problema, dados.getUsuarioId());
 

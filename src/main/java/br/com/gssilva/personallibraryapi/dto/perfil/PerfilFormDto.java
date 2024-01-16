@@ -2,6 +2,7 @@ package br.com.gssilva.personallibraryapi.dto.perfil;
 
 import br.com.gssilva.personallibraryapi.model.Perfil;
 import io.micrometer.common.util.StringUtils;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,14 +13,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PerfilFormDto {
+    @NotBlank(message = "Tipo deve ser preenchido")
     private String tipo;
+
+    @NotBlank(message = "Descrição deve ser preenchido")
     private String descricao;
 
     public Perfil criarPerfil() {
-        if(StringUtils.isBlank(tipo) || StringUtils.isBlank(descricao)){
-            throw new RuntimeException("Tipo e/ou descrição do perfil não informado");
-        }
-
         Perfil perfil = new Perfil();
 
         perfil.setTipo(tipo);
