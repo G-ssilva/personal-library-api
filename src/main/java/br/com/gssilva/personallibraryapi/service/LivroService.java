@@ -23,7 +23,7 @@ public class LivroService {
         livro.setUsuarioId(usuarioRetornado);
     }
 
-    public void cadastrar(Livro livro) {
+    public void persistir(Livro livro) {
         try {
             livroRepository.save(livro);
         } catch (Exception e) {

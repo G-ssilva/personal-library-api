@@ -25,7 +25,7 @@ public class UsuarioController {
         Usuario usuario = dados.criarUsuario();
         usuarioService.vincularPerfilSeExiste(usuario, dados.getPerfilId());
 
-        usuarioService.cadastrar(usuario);
+        usuarioService.persistir(usuario);
 
         URI uri = uriBuilder.path("api/usuario/{id}").buildAndExpand(usuario.getId()).toUri();
         return ResponseEntity.created(uri).body(dados);
@@ -41,7 +41,7 @@ public class UsuarioController {
         Usuario usuario = usuarioService.usuarioReferencia(id);
         dados.alterarUsuario(usuario);
         usuarioService.alterarPerfilSeInformado(usuario, dados.getPerfilId());
-        usuarioService.cadastrar(usuario);
+        usuarioService.persistir(usuario);
 
         UsuarioDto usuarioDto = new UsuarioDto(usuario);
 

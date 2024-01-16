@@ -23,7 +23,7 @@ public class UsuarioService {
         usuario.setPerfilId(perfilRetornado);
     }
 
-    public void cadastrar(Usuario usuario) {
+    public void persistir(Usuario usuario) {
         try {
             usuarioRepository.save(usuario);
         } catch (Exception e) {

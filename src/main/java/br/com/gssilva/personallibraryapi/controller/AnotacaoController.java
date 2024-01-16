@@ -25,7 +25,7 @@ public class AnotacaoController {
         Anotacao anotacao = dados.criarAnotacao();
         anotacaoService.vincularLivroSeExiste(anotacao, dados.getLivroId());
 
-        anotacaoService.cadastrar(anotacao);
+        anotacaoService.persistir(anotacao);
 
         URI uri = uriBuilder.path("api/perfil/{id}").buildAndExpand(anotacao.getId()).toUri();
         return ResponseEntity.created(uri).body(dados);
@@ -41,7 +41,7 @@ public class AnotacaoController {
         Anotacao anotacao = anotacaoService.anotacaoReferencia(id);
         dados.alterarAnotacao(anotacao);
         anotacaoService.alterarLivroSeInformado(anotacao, dados.getLivroId());
-        anotacaoService.cadastrar(anotacao);
+        anotacaoService.persistir(anotacao);
 
         AnotacaoDto anotacaoDto = new AnotacaoDto(anotacao);
 

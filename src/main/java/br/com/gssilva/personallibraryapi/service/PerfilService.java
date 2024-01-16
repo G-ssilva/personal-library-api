@@ -13,7 +13,7 @@ public class PerfilService {
     @Autowired
     private PerfilRepository perfilRepository;
 
-    public void cadastrar(Perfil perfil) {
+    public void persistir(Perfil perfil) {
         try {
             perfilRepository.save(perfil);
         } catch (Exception e) {

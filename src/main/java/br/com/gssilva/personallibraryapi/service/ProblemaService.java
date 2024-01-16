@@ -23,7 +23,7 @@ public class ProblemaService {
         problema.setUsuarioId(usuarioRetornado);
     }
 
-    public void cadastrar(Problema problema) {
+    public void persistir(Problema problema) {
         try {
             problemaRepository.save(problema);
         } catch (Exception e) {

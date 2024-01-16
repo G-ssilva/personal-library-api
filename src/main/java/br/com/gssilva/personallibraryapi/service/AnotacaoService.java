@@ -23,7 +23,7 @@ public class AnotacaoService {
         anotacao.setLivroId(livroRetornado);
     }
 
-    public void cadastrar(Anotacao anotacao) {
+    public void persistir(Anotacao anotacao) {
         try {
             anotacaoRepository.save(anotacao);
         } catch (Exception e) {

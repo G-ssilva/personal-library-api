@@ -25,7 +25,7 @@ public class ProblemaController {
         Problema problema = dados.criarProblema();
         problemaService.vincularUsuarioSeExiste(problema, dados.getUsuarioId());
 
-        problemaService.cadastrar(problema);
+        problemaService.persistir(problema);
 
         URI uri = uriBuilder.path("api/usuario/{id}").buildAndExpand(problema.getId()).toUri();
         return ResponseEntity.created(uri).body(dados);
@@ -41,7 +41,7 @@ public class ProblemaController {
         Problema problema = problemaService.problemaReferencia(id);
         dados.alterarProblema(problema);
         problemaService.alterarUsuarioSeInformado(problema, dados.getUsuarioId());
-        problemaService.cadastrar(problema);
+        problemaService.persistir(problema);
 
         ProblemaDto problemaDto = new ProblemaDto(problema);
 

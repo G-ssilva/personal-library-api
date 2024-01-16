@@ -23,7 +23,7 @@ public class PerfilController {
     @PostMapping
     public ResponseEntity<PerfilFormDto> cadastrar(@RequestBody @Valid PerfilFormDto dados, UriComponentsBuilder uriBuilder){
         Perfil perfil = dados.criarPerfil();
-        perfilService.cadastrar(perfil);
+        perfilService.persistir(perfil);
 
         URI uri = uriBuilder.path("api/perfil/{id}").buildAndExpand(perfil.getId()).toUri();
         return ResponseEntity.created(uri).body(dados);
@@ -38,7 +38,7 @@ public class PerfilController {
     public ResponseEntity<PerfilDto> alterar(@RequestBody PerfilFormDto dados, @PathVariable long id, UriComponentsBuilder uriBuilder){
         Perfil perfil = perfilService.perfilReferencia(id);
         dados.alterarPerfil(perfil);
-        perfilService.cadastrar(perfil);
+        perfilService.persistir(perfil);
 
         PerfilDto perfilDto = new PerfilDto(perfil);
 

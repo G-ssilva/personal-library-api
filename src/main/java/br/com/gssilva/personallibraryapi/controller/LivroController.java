@@ -25,7 +25,7 @@ public class LivroController {
         Livro livro = dados.criarLivro();
         livroService.vincularUsuarioSeExiste(livro, dados.getUsuarioId());
 
-        livroService.cadastrar(livro);
+        livroService.persistir(livro);
 
         URI uri = uriBuilder.path("api/livro/{id}").buildAndExpand(livro.getId()).toUri();
         return ResponseEntity.created(uri).body(dados);
@@ -41,7 +41,7 @@ public class LivroController {
         Livro livro = livroService.livroReferencia(id);
         dados.alterarLivro(livro);
         livroService.alterarUsuarioSeInformado(livro, dados.getUsuarioId());
-        livroService.cadastrar(livro);
+        livroService.persistir(livro);
 
         LivroDto livroDto = new LivroDto(livro);
 
