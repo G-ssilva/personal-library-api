@@ -3,6 +3,7 @@ package br.com.gssilva.personallibraryapi.service;
 import br.com.gssilva.personallibraryapi.model.Anotacao;
 import br.com.gssilva.personallibraryapi.model.Livro;
 import br.com.gssilva.personallibraryapi.repository.AnotacaoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,33 +25,25 @@ public class AnotacaoService {
     }
 
     public void persistir(Anotacao anotacao) {
-        try {
-            anotacaoRepository.save(anotacao);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao salvar anotação");
-        }
+        anotacaoRepository.save(anotacao);
     }
 
     public Anotacao listarPorId(long id) {
         Optional<Anotacao> anotacao = anotacaoRepository.findById(id);
 
-        if(anotacao.isEmpty()){
-            throw new RuntimeException("Id da anotação não existe na base de dados");
+        if (anotacao.isEmpty()) {
+            throw new EntityNotFoundException("ID da anotação não encontrada na base de dados");
         }
 
         return anotacao.get();
     }
 
     public Anotacao anotacaoReferencia(long id) {
-        try {
-            return anotacaoRepository.getReferenceById(id);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao buscar referência do id da anotação informado");
-        }
+        return anotacaoRepository.getReferenceById(id);
     }
 
     public void alterarLivroSeInformado(Anotacao anotacao, Long livroId) {
-        if(livroId != null){
+        if (livroId != null) {
             vincularLivroSeExiste(anotacao, livroId);
         }
     }
@@ -58,12 +51,6 @@ public class AnotacaoService {
     public void deletarPorId(long id) {
         listarPorId(id);
 
-        try {
-            anotacaoRepository.deleteById(id);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao deletar anotação");
-        }
+        anotacaoRepository.deleteById(id);
     }
-
-
 }
