@@ -3,6 +3,7 @@ package br.com.gssilva.personallibraryapi.service;
 import br.com.gssilva.personallibraryapi.model.Problema;
 import br.com.gssilva.personallibraryapi.model.Usuario;
 import br.com.gssilva.personallibraryapi.repository.ProblemaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,33 +25,25 @@ public class ProblemaService {
     }
 
     public void persistir(Problema problema) {
-        try {
-            problemaRepository.save(problema);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao salvar problema");
-        }
+        problemaRepository.save(problema);
     }
 
     public Problema listarPorId(long id) {
         Optional<Problema> problema = problemaRepository.findById(id);
 
-        if(problema.isEmpty()){
-            throw new RuntimeException("Id do problema não existe na base de dados");
+        if (problema.isEmpty()) {
+            throw new EntityNotFoundException("ID do problema não encontrado na base de dados");
         }
 
         return problema.get();
     }
 
     public Problema problemaReferencia(long id) {
-        try {
-            return problemaRepository.getReferenceById(id);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao buscar referência do id do problema informado");
-        }
+        return problemaRepository.getReferenceById(id);
     }
 
     public void alterarUsuarioSeInformado(Problema problema, Long usuarioId) {
-        if(usuarioId != null){
+        if (usuarioId != null) {
             vincularUsuarioSeExiste(problema, usuarioId);
         }
     }
@@ -58,12 +51,6 @@ public class ProblemaService {
     public void deletarPorId(long id) {
         listarPorId(id);
 
-        try {
-            problemaRepository.deleteById(id);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao deletar problema");
-        }
+        problemaRepository.deleteById(id);
     }
-
-
 }
