@@ -1,9 +1,7 @@
 package br.com.gssilva.personallibraryapi.controller;
 
-import br.com.gssilva.personallibraryapi.dto.livro.LivroDto;
-import br.com.gssilva.personallibraryapi.dto.usuario.UsuarioFormDto;
 import br.com.gssilva.personallibraryapi.dto.usuario.UsuarioDto;
-import br.com.gssilva.personallibraryapi.model.Livro;
+import br.com.gssilva.personallibraryapi.dto.usuario.UsuarioFormDto;
 import br.com.gssilva.personallibraryapi.model.Usuario;
 import br.com.gssilva.personallibraryapi.service.UsuarioService;
 import jakarta.validation.Valid;
