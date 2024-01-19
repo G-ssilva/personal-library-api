@@ -1,5 +1,6 @@
 package br.com.gssilva.personallibraryapi.service;
 
+import br.com.gssilva.personallibraryapi.dto.usuario.UsuarioDto;
 import br.com.gssilva.personallibraryapi.model.Perfil;
 import br.com.gssilva.personallibraryapi.model.Usuario;
 import br.com.gssilva.personallibraryapi.repository.UsuarioRepository;
@@ -8,6 +9,8 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,6 +46,11 @@ public class UsuarioService {
         return usuario.get();
     }
 
+    public List<Usuario> listarTodos() {
+        log.info("Buscando todos os usuários da base de dados");
+        return usuarioRepository.findAll();
+    }
+
     public Usuario usuarioReferencia(long id) {
         log.info("Buscando na base de dados a referência do ID do Usuário informado");
         return usuarioRepository.getReferenceById(id);
@@ -61,5 +69,15 @@ public class UsuarioService {
 
         usuarioRepository.deleteById(id);
         log.info("ID do Usuário deletado da base de dados");
+    }
+
+    public List<UsuarioDto> retornarListaUsuarios() {
+        List<Usuario> usuarios = listarTodos();
+        List<UsuarioDto> usuariosDto = new ArrayList<>();
+
+        usuarios.forEach(usuario -> usuariosDto.add(new UsuarioDto(usuario)));
+
+        log.info("Encontrei " + usuariosDto.size() + " usuários na base de dados. Irei retornar");
+        return usuariosDto;
     }
 }
