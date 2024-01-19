@@ -3,6 +3,7 @@ package br.com.gssilva.personallibraryapi.service;
 import br.com.gssilva.personallibraryapi.model.Perfil;
 import br.com.gssilva.personallibraryapi.model.Usuario;
 import br.com.gssilva.personallibraryapi.repository.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,33 +25,25 @@ public class UsuarioService {
     }
 
     public void persistir(Usuario usuario) {
-        try {
-            usuarioRepository.save(usuario);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao salvar usuário");
-        }
+        usuarioRepository.save(usuario);
     }
 
     public Usuario listarPorId(long id) {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
 
-        if(usuario.isEmpty()){
-            throw new RuntimeException("Id do usuário não existe na base de dados");
+        if (usuario.isEmpty()) {
+            throw new EntityNotFoundException("ID do usuário não encontrado na base de dados");
         }
 
         return usuario.get();
     }
 
     public Usuario usuarioReferencia(long id) {
-        try {
-            return usuarioRepository.getReferenceById(id);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao buscar referência do id do usuário informado");
-        }
+        return usuarioRepository.getReferenceById(id);
     }
 
     public void alterarPerfilSeInformado(Usuario usuario, Long perfilId) {
-        if(perfilId != null){
+        if (perfilId != null) {
             vincularPerfilSeExiste(usuario, perfilId);
         }
     }
@@ -58,10 +51,6 @@ public class UsuarioService {
     public void deletarPorId(long id) {
         listarPorId(id);
 
-        try {
-            usuarioRepository.deleteById(id);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao deletar usuário");
-        }
+        usuarioRepository.deleteById(id);
     }
 }

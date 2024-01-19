@@ -1,5 +1,6 @@
 package br.com.gssilva.personallibraryapi.dto.usuario;
 
+import br.com.gssilva.personallibraryapi.exceptions.RegraNegocioException;
 import br.com.gssilva.personallibraryapi.model.Usuario;
 import io.micrometer.common.util.StringUtils;
 import jakarta.validation.constraints.NotBlank;
@@ -34,7 +35,7 @@ public class UsuarioFormDto {
 
     public void alterarUsuario(Usuario usuario) {
         if(StringUtils.isNotBlank(login)){
-            throw new RuntimeException("Não é possível alterar o usuário");
+            throw new RegraNegocioException("Não é possível alterar o login");
         }
 
         if(StringUtils.isNotBlank(senha)){
