@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/anotacao")
@@ -34,6 +35,11 @@ public class AnotacaoController {
     @GetMapping("{id}")
     public AnotacaoDto listarPorId(@PathVariable long id){
         return new AnotacaoDto(anotacaoService.listarPorId(id));
+    }
+
+    @GetMapping("listar")
+    public List<AnotacaoDto> listarTodos(){
+        return anotacaoService.retornarListaAnotacoes();
     }
 
     @PutMapping("{id}")

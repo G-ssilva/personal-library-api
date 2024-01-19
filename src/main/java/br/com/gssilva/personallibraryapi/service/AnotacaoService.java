@@ -1,5 +1,6 @@
 package br.com.gssilva.personallibraryapi.service;
 
+import br.com.gssilva.personallibraryapi.dto.anotacao.AnotacaoDto;
 import br.com.gssilva.personallibraryapi.model.Anotacao;
 import br.com.gssilva.personallibraryapi.model.Livro;
 import br.com.gssilva.personallibraryapi.repository.AnotacaoRepository;
@@ -8,6 +9,8 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,6 +46,11 @@ public class AnotacaoService {
         return anotacao.get();
     }
 
+    public List<Anotacao> listarTodos(){
+        log.info("Buscando todos as anotações da base de dados");
+        return anotacaoRepository.findAll();
+    }
+
     public Anotacao anotacaoReferencia(long id) {
         log.info("Buscando na base de dados a referência do ID da Anotação informado");
         return anotacaoRepository.getReferenceById(id);
@@ -61,5 +69,15 @@ public class AnotacaoService {
 
         anotacaoRepository.deleteById(id);
         log.info("ID da Anotação deletado da base de dados");
+    }
+
+    public List<AnotacaoDto> retornarListaAnotacoes() {
+        List<Anotacao> anotacoes = listarTodos();
+        List<AnotacaoDto> anotacoesDto = new ArrayList<>();
+
+        anotacoes.forEach(anotacao -> anotacoesDto.add(new AnotacaoDto(anotacao)));
+
+        log.info("Encontrei " + anotacoesDto.size() + " anotações na base de dados. Irei retornar");
+        return anotacoesDto;
     }
 }
