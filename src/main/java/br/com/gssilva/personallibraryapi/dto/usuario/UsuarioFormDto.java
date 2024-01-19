@@ -9,11 +9,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.java.Log;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Log
 public class UsuarioFormDto {
     @NotBlank(message = "Login deve ser preenchido")
     private String login;
@@ -25,6 +27,8 @@ public class UsuarioFormDto {
     private Long perfilId;
 
     public Usuario criarUsuario() {
+        log.info("Criando objeto Usuário a partir do DTO");
+
         Usuario usuario = new Usuario();
 
         usuario.setLogin(login);
@@ -34,6 +38,8 @@ public class UsuarioFormDto {
     }
 
     public void alterarUsuario(Usuario usuario) {
+        log.info("Alterando, caso o usuário tenha realizado mudanças, o objeto Usuário");
+
         if(StringUtils.isNotBlank(login)){
             throw new RegraNegocioException("Não é possível alterar o login");
         }

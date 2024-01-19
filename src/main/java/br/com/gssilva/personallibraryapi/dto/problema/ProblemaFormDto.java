@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.java.Log;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Log
 public class ProblemaFormDto {
     @NotBlank(message = "Título deve ser preenchido")
     private String titulo;
@@ -29,6 +31,8 @@ public class ProblemaFormDto {
     private Long usuarioId;
 
     public Problema criarProblema() {
+        log.info("Criando objeto Problema a partir do DTO");
+
         Problema problema = new Problema();
 
         problema.setTitulo(titulo);
@@ -50,6 +54,8 @@ public class ProblemaFormDto {
     }
 
     public void alterarProblema(Problema problema) {
+        log.info("Alterando, caso o usuário tenha realizado mudanças, o objeto Problema");
+
         if(StringUtils.isNotBlank(titulo)){
             problema.setTitulo(titulo);
         }

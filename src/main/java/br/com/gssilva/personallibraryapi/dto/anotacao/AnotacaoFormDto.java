@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.java.Log;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Log
 public class AnotacaoFormDto {
     @NotBlank(message = "Título deve ser preenchido")
     private String titulo;
@@ -28,6 +30,8 @@ public class AnotacaoFormDto {
     private Long livroId;
 
     public Anotacao criarAnotacao() {
+        log.info("Criando objeto Anotação a partir do DTO");
+
         Anotacao anotacao = new Anotacao();
         anotacao.setTitulo(titulo);
         anotacao.setDescricao(descricao);
@@ -41,6 +45,8 @@ public class AnotacaoFormDto {
     }
 
     public void alterarAnotacao(Anotacao anotacao) {
+        log.info("Alterando, caso o usuário tenha realizado mudanças, o objeto Anotação");
+
         if(StringUtils.isNotBlank(titulo)){
             anotacao.setTitulo(titulo);
         }
