@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/problema")
@@ -34,6 +35,11 @@ public class ProblemaController {
     @GetMapping("{id}")
     public ProblemaDto listarPorId(@PathVariable long id){
         return new ProblemaDto(problemaService.listarPorId(id));
+    }
+
+    @GetMapping("listar")
+    public List<ProblemaDto> listarTodos(){
+        return problemaService.retornarListaProblemas();
     }
 
     @PutMapping("{id}")

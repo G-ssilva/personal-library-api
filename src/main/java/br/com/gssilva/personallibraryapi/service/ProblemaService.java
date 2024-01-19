@@ -1,5 +1,6 @@
 package br.com.gssilva.personallibraryapi.service;
 
+import br.com.gssilva.personallibraryapi.dto.problema.ProblemaDto;
 import br.com.gssilva.personallibraryapi.model.Problema;
 import br.com.gssilva.personallibraryapi.model.Usuario;
 import br.com.gssilva.personallibraryapi.repository.ProblemaRepository;
@@ -8,6 +9,8 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,6 +46,11 @@ public class ProblemaService {
         return problema.get();
     }
 
+    public List<Problema> listarTodos() {
+        log.info("Buscando todos os problemas da base de dados");
+        return problemaRepository.findAll();
+    }
+
     public Problema problemaReferencia(long id) {
         log.info("Buscando na base de dados a referência do ID do Problema informado");
         return problemaRepository.getReferenceById(id);
@@ -61,5 +69,15 @@ public class ProblemaService {
 
         problemaRepository.deleteById(id);
         log.info("ID do Problema deletado da base de dados");
+    }
+
+    public List<ProblemaDto> retornarListaProblemas() {
+        List<Problema> problemas = listarTodos();
+        List<ProblemaDto> problemasDto = new ArrayList<>();
+
+        problemas.forEach(problema -> problemasDto.add(new ProblemaDto(problema)));
+
+        log.info("Encontrei " + problemasDto.size() + " problemas na base de dados. Irei retornar");
+        return problemasDto;
     }
 }
