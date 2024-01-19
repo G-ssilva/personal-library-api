@@ -1,5 +1,6 @@
 package br.com.gssilva.personallibraryapi.service;
 
+import br.com.gssilva.personallibraryapi.dto.livro.LivroDto;
 import br.com.gssilva.personallibraryapi.model.Livro;
 import br.com.gssilva.personallibraryapi.model.Usuario;
 import br.com.gssilva.personallibraryapi.repository.LivroRepository;
@@ -8,6 +9,8 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,6 +46,11 @@ public class LivroService {
         return livro.get();
     }
 
+    public List<Livro> listarTodos() {
+        log.info("Buscando todos os livros da base de dados");
+        return livroRepository.findAll();
+    }
+
     public Livro livroReferencia(long id) {
         log.info("Buscando na base de dados a referência do ID do Livro informado");
         return livroRepository.getReferenceById(id);
@@ -61,5 +69,16 @@ public class LivroService {
 
         livroRepository.deleteById(id);
         log.info("ID do Livro deletado da base de dados");
+    }
+
+
+    public List<LivroDto> retornarListaLivros() {
+        List<Livro> livros = listarTodos();
+        List<LivroDto> livrosDto = new ArrayList<>();
+
+        livros.forEach(livro -> livrosDto.add(new LivroDto(livro)));
+
+        log.info("Encontrei " + livrosDto.size() + " livros na base de dados. Irei retornar");
+        return livrosDto;
     }
 }

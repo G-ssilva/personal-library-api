@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/livro")
@@ -34,6 +35,11 @@ public class LivroController {
     @GetMapping("{id}")
     public LivroDto listarPorId(@PathVariable long id){
         return new LivroDto(livroService.listarPorId(id));
+    }
+
+    @GetMapping("listar")
+    public List<LivroDto> listarTodos(){
+        return livroService.retornarListaLivros();
     }
 
     @PutMapping("{id}")
