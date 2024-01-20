@@ -7,6 +7,8 @@ import br.com.gssilva.personallibraryapi.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -79,5 +81,14 @@ public class UsuarioService {
 
         log.info("Encontrei " + usuariosDto.size() + " usuários na base de dados. Irei retornar");
         return usuariosDto;
+    }
+
+    public void criptografarSenha(Usuario usuario) {
+        String senhaCriptografada = new BCryptPasswordEncoder().encode(usuario.getSenha());
+        usuario.setSenha(senhaCriptografada);
+    }
+
+    public UserDetails findByLogin(String login) {
+        return usuarioRepository.findByLogin(login);
     }
 }
