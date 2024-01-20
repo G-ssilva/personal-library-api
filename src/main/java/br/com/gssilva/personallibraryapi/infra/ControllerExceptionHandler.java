@@ -47,6 +47,12 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, beanValidationError, headers, beanValidationError.getStatus(), request);
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    private RestErrorDto runtimeErrorHandler(RuntimeException e) {
+        return new RestErrorDto(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+    }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     private ResponseEntity<RestErrorDto> dataIntegrityViolationHandler(DataIntegrityViolationException e) {
         if (e.getMessage().contains("duplicate key value")) {
