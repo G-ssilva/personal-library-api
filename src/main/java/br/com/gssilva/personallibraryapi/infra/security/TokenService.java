@@ -21,12 +21,11 @@ public class TokenService {
     public String gerarToken(Usuario usuario){
         try {
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
-            String token = JWT.create()
+            return JWT.create()
                     .withIssuer("personal-library")
                     .withSubject(usuario.getLogin())
                     .withExpiresAt(gerarDataExpiracao())
                     .sign(algorithm);
-            return token;
         } catch (JWTCreationException exception) {
             throw new RuntimeException("Erro ao gerar token JWT", exception);
         }
