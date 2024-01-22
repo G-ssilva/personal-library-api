@@ -17,8 +17,11 @@ import java.time.ZoneOffset;
 @Log
 public class TokenService {
 
-    @Value("{api.security.token.secret}")
+    @Value("${api.security.token.secret}")
     public String SECRET;
+
+    @Value("${api.security.token.min.expires}")
+    public Long MIN_EXPIRES;
 
     public String gerarToken(Usuario usuario){
         try {
@@ -50,6 +53,9 @@ public class TokenService {
     }
 
     private Instant gerarDataExpiracao(){
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+        if (MIN_EXPIRES == null) {
+            throw new RuntimeException("Tempo de expiração do token está nulo ou inválido");
+        }
+        return LocalDateTime.now().plusMinutes(MIN_EXPIRES).toInstant(ZoneOffset.of("-03:00"));
     }
 }
