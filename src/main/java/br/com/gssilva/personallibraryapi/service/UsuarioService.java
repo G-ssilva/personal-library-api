@@ -84,6 +84,7 @@ public class UsuarioService {
     }
 
     public void criptografarSenha(Usuario usuario) {
+        log.info("Criptogranfo senha do usuário");
         String senhaCriptografada = new BCryptPasswordEncoder().encode(usuario.getSenha());
         usuario.setSenha(senhaCriptografada);
     }
